@@ -1,23 +1,22 @@
 "use client";
 
 import React from "react";
-
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
-import ProductList from "../products/productList";
+import Category from "./category";
 
 const queryClient = new QueryClient();
 
-export default function ProductComp() {
+const Categories = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <ProductPage />
+      <CategoriesList />
     </QueryClientProvider>
   );
-}
+};
 
-function ProductPage() {
+function CategoriesList() {
   const { isLoading, error, data }: any = useQuery("repoData", () =>
-    fetch(`http://127.0.0.1:8000/api/products/`).then((res) => res.json())
+    fetch(`http://127.0.0.1:8000/api/categories/`).then((res) => res.json())
   );
 
   if (isLoading) return "Loading...";
@@ -26,9 +25,11 @@ function ProductPage() {
 
   return (
     <div>
-      {data.map((product: any) => (
-        <ProductList {...product} />
+      {data.map((category: any) => (
+        <Category {...category} />
       ))}
     </div>
   );
 }
+
+export default Categories;
