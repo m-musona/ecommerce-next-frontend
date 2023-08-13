@@ -22,15 +22,6 @@ const ProductList = ({
             <div>Rating</div>
             <div className="text-xl font-semibold">${price}</div>
           </div>
-          <div className="py-1 text-left w-[300px]">
-            <ul className="list-disc">
-              {features.map((feature) => (
-                <li className="text-sm font-semibold" key={feature}>
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
       </div>
     </div>
