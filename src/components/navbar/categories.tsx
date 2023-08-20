@@ -19,12 +19,12 @@ function CategoriesList() {
     fetch(`http://127.0.0.1:8000/api/categories/`).then((res) => res.json())
   );
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <div></div>;
 
   if (error) return "An error has occurred: " + error.message;
 
   return (
-    <div>
+    <div className="flex">
       {data.map((category: any) => (
         <Category {...category} />
       ))}

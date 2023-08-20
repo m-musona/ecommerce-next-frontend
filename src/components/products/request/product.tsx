@@ -3,7 +3,8 @@
 import React from "react";
 
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
-import ProductList from "../products/productList";
+import ProductList from "../productList";
+import ProductsLoading from "../productsLoading";
 
 const queryClient = new QueryClient();
 
@@ -20,7 +21,13 @@ function ProductPage() {
     fetch(`http://127.0.0.1:8000/api/products/`).then((res) => res.json())
   );
 
-  if (isLoading) return "Loading...";
+  if (isLoading)
+    return (
+      <div>
+        <ProductsLoading />
+        <ProductsLoading />
+      </div>
+    );
 
   if (error) return "An error has occurred: " + error.message;
 
