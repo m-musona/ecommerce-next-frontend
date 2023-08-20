@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const CartAndAccount = () => {
@@ -15,6 +16,7 @@ const CartAndAccount = () => {
         </div>
         <div>Account</div>
       </div>
+      <Link  href="/cart">
       <div className="px-4">
         <div className="w-[35px] h-[35px]">
           <svg
@@ -27,6 +29,7 @@ const CartAndAccount = () => {
         </div>
         <div>Cart</div>
       </div>
+      </Link>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import Logo from "./logo";
 import SearchBar from "./searchBar";
 import CartAndAccount from "./cartAndAccount";
-import Categories from "./categories";
+import Categories from "./category/categories";
 
 const Navbar = () => {
   return (

@@ -3,6 +3,7 @@
 import React from "react";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import Category from "./category";
+import Link from "next/link";
 
 const queryClient = new QueryClient();
 

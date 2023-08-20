@@ -3,39 +3,45 @@
 import React from "react";
 
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
-import ProductList from "../productList";
-import ProductsLoading from "../productsLoading";
 
 const queryClient = new QueryClient();
 
-export default function ProductComp() {
-  return (
+interface ProductCompProps {
+    api_endpoint: string;
+}
+
+export default function ProductComponent (props: ProductCompProps) {
+const api_route: string = `http://127.0.0.1:8000/api/${props.api_endpoint}`;
+return (
     <QueryClientProvider client={queryClient}>
-      <ProductPage />
+      <ProductPage api_route={api_route} />
     </QueryClientProvider>
   );
 }
 
-function ProductPage() {
-  const { isLoading, error, data }: any = useQuery("repoData", () =>
-    fetch(`http://127.0.0.1:8000/api/products/`).then((res) => res.json())
-  );
-
-  if (isLoading)
-    return (
-      <div>
-        <ProductsLoading />
-        <ProductsLoading />
-      </div>
-    );
-
-  if (error) return "An error has occurred: " + error.message;
-
-  return (
-    <div>
-      {data.map((product: any) => (
-        <ProductList {...product} />
-      ))}
-    </div>
-  );
+interface ProductPageProps {
+	api_route: string;
 }
+function ProductPage(props: ProductPageProps) {
+	const { isLoading, error, data }: any = useQuery("repoData", () =>
+		fetch(props.api_route).then((res) => res.json())
+	);
+
+	if (isLoading)
+		return (
+			<div>
+				<div>....Loaading</div>
+			</div>
+		);
+
+	if (error) return "An error has occurred: " + error.message;
+
+	return (
+		<div>
+			<div>
+				{data.title}
+			</div>
+		</div>
+	);
+}
+
